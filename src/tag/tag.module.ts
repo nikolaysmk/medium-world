@@ -1,7 +1,10 @@
-import { Module } from '@nestjs/common';
-import { TagController } from './tag.controller';
+import { Model, Column, Table } from 'sequelize-typescript';
 
-@Module({
-  controllers: [TagController],
-})
-export class TagModule {}
+@Table({ tableName: 'tags' })
+export class Tag extends Model<Tag> {
+  @Column({ primaryKey: true, autoIncrement: true })
+  id: number;
+
+  @Column({ unique: true })
+  name: string;
+}
